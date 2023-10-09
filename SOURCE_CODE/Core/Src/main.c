@@ -52,6 +52,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 void display7SEG(int num);
+void updateClockBuffer();
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -68,7 +69,6 @@ void display7SEG(int num);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	setTimer(25);
 	setTimer(100);
   /* USER CODE END 1 */
 
@@ -127,6 +127,14 @@ int main(void)
 		  break;
 	  }
   }
+
+  int hour = 15, minute = 8, second = 50;
+  void updateClockBuffer(){
+    led_buffer[0] = hour / 10;
+    led_buffer[1] = hour % 10;
+    led_buffer[2] = minute / 10;
+    led_buffer[3] = minute % 10;
+  }
   /* USER CODE END 2 */
   setTimerRed(100);
   /* Infinite loop */
@@ -140,6 +148,17 @@ int main(void)
 	  }
 
 	  if (timer_red_flag == 1) {
+		  second++;
+		  if(second >= 60){
+			  second = 0;
+			  minute++;
+		  }
+		  if(minute >= 60){
+			  minute = 0;
+			  hour++;
+		  }
+		  if(hour >= 24) hour = 0;
+		  updateClockBuffer();
 		  HAL_GPIO_TogglePin(LED_DOT_GPIO_Port, LED_DOT_Pin);
 		  setTimerRed(100);
 	  }
