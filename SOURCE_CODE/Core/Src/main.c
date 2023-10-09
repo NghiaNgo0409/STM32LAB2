@@ -93,10 +93,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT (&htim2) ;
   /* USER CODE END 2 */
-//  HAL_GPIO_WritePin(BUTTON_0_GPIO_Port, BUTTON_0_Pin, RESET);
-//  HAL_GPIO_WritePin(BUTTON_1_GPIO_Port, BUTTON_1_Pin, SET);
-//  setTimer(100);
-//  display7SEG(0);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -325,13 +321,6 @@ void display7SEG(int num) {
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback( TIM_HandleTypeDef * htim )
 {
-
-//	if (timer_flag == 1) {
-//		if (counter >= 9) counter = 0;
-//		counter++;
-//		setTimer(100);
-//		display7SEG(counter);
-//	}
 	timerRun();
 }
 /* USER CODE END 4 */
