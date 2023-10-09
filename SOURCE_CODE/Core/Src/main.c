@@ -69,7 +69,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	setTimer(25);
-	setTimer(100);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
