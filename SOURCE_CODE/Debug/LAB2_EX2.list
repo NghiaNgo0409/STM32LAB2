@@ -217,8 +217,8 @@ Disassembly of section .text:
 int main(void)
  8000252:	f107 0328 	add.w	r3, r7, #40	; 0x28
  8000256:	613b      	str	r3, [r7, #16]
-	setTimer(50);
- 8000258:	2032      	movs	r0, #50	; 0x32
+	setTimer(25);
+ 8000258:	2019      	movs	r0, #25
  800025a:	f000 fabf 	bl	80007dc <setTimer>
 	setTimer(100);
  800025e:	2064      	movs	r0, #100	; 0x64
@@ -269,8 +269,8 @@ int main(void)
  80002aa:	dd01      	ble.n	80002b0 <main+0x64>
  80002ac:	2300      	movs	r3, #0
  80002ae:	617b      	str	r3, [r7, #20]
-		  setTimer(50);
- 80002b0:	2032      	movs	r0, #50	; 0x32
+		  setTimer(25);
+ 80002b0:	2019      	movs	r0, #25
  80002b2:	f000 fa93 	bl	80007dc <setTimer>
 	  }
 

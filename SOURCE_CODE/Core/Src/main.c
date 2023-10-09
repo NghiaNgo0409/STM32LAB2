@@ -68,7 +68,7 @@ void display7SEG(int num);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	setTimer(50);
+	setTimer(25);
 	setTimer(100);
   /* USER CODE END 1 */
 
@@ -136,7 +136,7 @@ int main(void)
 	  if(timer_flag == 1) {
 		  update7SEG(index_led++);
 		  if(index_led > 3) index_led = 0;
-		  setTimer(50);
+		  setTimer(25);
 	  }
 
 	  if (timer_red_flag == 1) {
