@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "switch_led.h"
+#include "software_timer.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -68,7 +68,8 @@ void display7SEG(int num);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	setTimer(50);
+	setTimer(100);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -92,13 +93,56 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT (&htim2) ;
+//  const int MAX_LED = 4;
+  int index_led = 0;
+  int led_buffer [4] = {1 , 4 , 1 , 0};
+  void update7SEG(int index){
+	  display7SEG(led_buffer[index]);
+	  switch(index){
+	  case 0:
+		  HAL_GPIO_WritePin(BUTTON_0_GPIO_Port, BUTTON_0_Pin, RESET);
+		  HAL_GPIO_WritePin(BUTTON_1_GPIO_Port, BUTTON_1_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_2_GPIO_Port, BUTTON_2_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_3_GPIO_Port, BUTTON_3_Pin, SET);
+		  break;
+	  case 1:
+		  HAL_GPIO_WritePin(BUTTON_0_GPIO_Port, BUTTON_0_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_1_GPIO_Port, BUTTON_1_Pin, RESET);
+		  HAL_GPIO_WritePin(BUTTON_2_GPIO_Port, BUTTON_2_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_3_GPIO_Port, BUTTON_3_Pin, SET);
+		  break;
+	  case 2:
+		  HAL_GPIO_WritePin(BUTTON_0_GPIO_Port, BUTTON_0_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_1_GPIO_Port, BUTTON_1_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_2_GPIO_Port, BUTTON_2_Pin, RESET);
+		  HAL_GPIO_WritePin(BUTTON_3_GPIO_Port, BUTTON_3_Pin, SET);
+		  break;
+	  case 3:
+		  HAL_GPIO_WritePin(BUTTON_0_GPIO_Port, BUTTON_0_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_1_GPIO_Port, BUTTON_1_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_2_GPIO_Port, BUTTON_2_Pin, SET);
+		  HAL_GPIO_WritePin(BUTTON_3_GPIO_Port, BUTTON_3_Pin, RESET);
+		  break;
+	  default:
+		  break;
+	  }
+  }
   /* USER CODE END 2 */
   setTimerRed(100);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  switching_led();
+	  if(timer_flag == 1) {
+		  update7SEG(index_led++);
+		  if(index_led > 3) index_led = 0;
+		  setTimer(50);
+	  }
+
+	  if (timer_red_flag == 1) {
+		  HAL_GPIO_TogglePin(LED_DOT_GPIO_Port, LED_DOT_Pin);
+		  setTimerRed(100);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
