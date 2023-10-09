@@ -226,17 +226,17 @@ int main(void)
 	  }
   }
 
-//  void shiftMatrixLeft() {
-//	  uint8_t temp = matrix_buffer[0];
-//	  matrix_buffer[0] = matrix_buffer[1];
-//	  matrix_buffer[1] = matrix_buffer[2];
-//	  matrix_buffer[2] = matrix_buffer[3];
-//	  matrix_buffer[3] = matrix_buffer[4];
-//	  matrix_buffer[4] = matrix_buffer[5];
-//	  matrix_buffer[5] = matrix_buffer[6];
-//	  matrix_buffer[6] = matrix_buffer[7];
-//	  matrix_buffer[7] = temp;
-//  }
+  void shiftMatrixLeft() {
+	  uint8_t temp = matrix_buffer[0];
+	  matrix_buffer[0] = matrix_buffer[1];
+	  matrix_buffer[1] = matrix_buffer[2];
+	  matrix_buffer[2] = matrix_buffer[3];
+	  matrix_buffer[3] = matrix_buffer[4];
+	  matrix_buffer[4] = matrix_buffer[5];
+	  matrix_buffer[5] = matrix_buffer[6];
+	  matrix_buffer[6] = matrix_buffer[7];
+	  matrix_buffer[7] = temp;
+  }
 
   int hour = 17, minute = 8, second = 50;
   void updateClockBuffer(){
@@ -276,7 +276,7 @@ int main(void)
 	  }
 	  if (timer0_flag == 1) {
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-//		  shiftMatrixLeft();
+		  shiftMatrixLeft();
 		  setTimer0(1000);
 	  }
 	  if (timer_matrix_flag == 1) {
