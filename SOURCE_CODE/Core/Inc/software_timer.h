@@ -10,11 +10,14 @@
 
 extern int timer_flag;
 extern int timer_red_flag;
+extern int timer0_flag;
 
 void setTimer(int duration);
 void setTimerRed(int duration);
+void setTimer0(int duration);
 
 void timerRun();
 void timerRedRun();
+void timer0Run();
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

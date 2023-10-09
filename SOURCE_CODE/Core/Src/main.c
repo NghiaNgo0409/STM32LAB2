@@ -137,6 +137,7 @@ int main(void)
   }
   /* USER CODE END 2 */
   setTimerRed(100);
+  setTimer0(1000);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -161,6 +162,10 @@ int main(void)
 		  updateClockBuffer();
 		  HAL_GPIO_TogglePin(LED_DOT_GPIO_Port, LED_DOT_Pin);
 		  setTimerRed(100);
+	  }
+	  if (timer0_flag == 1) {
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+		  setTimer0(1000);
 	  }
     /* USER CODE END WHILE */
 
@@ -391,6 +396,7 @@ void HAL_TIM_PeriodElapsedCallback( TIM_HandleTypeDef * htim )
 {
 	timerRun();
 	timerRedRun();
+	timer0Run();
 }
 /* USER CODE END 4 */
 
