@@ -69,7 +69,7 @@ void updateClockBuffer();
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	setTimer(100);
+	setTimer(25);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
